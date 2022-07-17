@@ -31,6 +31,14 @@ dependencies:
     sdk: flutter
 
   freshchat_sdk: 0.9.7
+  firebase_core: ^1.19.2
+  firebase_messaging: ^12.0.0
+  flutter_local_notifications: ^5.0.0
+  shared_preferences: ^2.0.15
+  flutter_social_content_share: ^1.0.2
+  share_plus: ^4.0.10
+
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

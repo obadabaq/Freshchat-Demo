@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "543939760948",
+    "project_id": "freshchat-test-4e8cb",
+    "storage_bucket": "freshchat-test-4e8cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:543939760948:android:25caaee1795c4053ee4b61",
+        "android_client_info": {
+          "package_name": "com.example.freshchat_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "543939760948-p4hai4gujgen30g48n1qf5ilrnvks1a1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUEEViEQNQvfx3zCSTBCjveZnEJ8jpVxo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "543939760948-p4hai4gujgen30g48n1qf5ilrnvks1a1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
