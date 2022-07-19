@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:freshchat_sdk/freshchat_sdk.dart';
 import 'package:freshchat_sdk/freshchat_user.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 
 class MarketingScreen extends StatefulWidget {
   final FreshchatUser freshchatUser;
+  final int selected;
 
-  const MarketingScreen({Key? key, required this.freshchatUser})
+  const MarketingScreen({Key? key, required this.freshchatUser, required this.selected})
       : super(key: key);
 
   @override

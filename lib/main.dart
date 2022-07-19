@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:freshchat_sdk/freshchat_sdk.dart';
 import 'package:freshchat_test/screens/choose_user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,10 +15,6 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print('Handling a background message ${message.messageId}');
 }
 
-late AndroidNotificationChannel channel;
-
-late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
-
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -30,18 +25,6 @@ void main() async{
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   if (!kIsWeb) {
-    channel = const AndroidNotificationChannel(
-      'high_importance_channel', // id
-      'High Importance Notifications', // title
-      'This channel is used for important notifications.', // description
-    );
-
-    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
-    await flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(channel);
 
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
@@ -82,6 +65,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+    clearPrefs();
+
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       if(await Freshchat.isFreshchatNotification(message.data))
       {
@@ -89,21 +74,6 @@ class _MyHomePageState extends State<MyHomePage> {
       }
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
-      if (notification != null && android != null && !kIsWeb) {
-        flutterLocalNotificationsPlugin.show(
-          notification.hashCode,
-          notification.title,
-          notification.body,
-          NotificationDetails(
-            android: AndroidNotificationDetails(
-              channel.id,
-              channel.name,
-              channel.description,
-              icon: 'launch_background',
-            ),
-          ),
-        );
-      }
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
@@ -114,6 +84,11 @@ class _MyHomePageState extends State<MyHomePage> {
     Freshchat.init("551f481f-aae8-4b4a-afec-e6eb52e43292",
         "ead75102-10d0-4500-84f7-4ae86136d0c9", "msdk.freshchat.com");
     super.initState();
+  }
+
+  clearPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
   }
 
   @override

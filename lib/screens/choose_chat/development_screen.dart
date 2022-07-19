@@ -1,14 +1,13 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:freshchat_sdk/freshchat_sdk.dart';
 import 'package:freshchat_sdk/freshchat_user.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class DevelopmentScreen extends StatefulWidget {
   final FreshchatUser freshchatUser;
+  final int selected;
 
 
-  const DevelopmentScreen({Key? key, required this.freshchatUser}) : super(key: key);
+  const DevelopmentScreen({Key? key, required this.freshchatUser, required this.selected}) : super(key: key);
 
   @override
   _DevelopmentScreenState createState() => _DevelopmentScreenState();
