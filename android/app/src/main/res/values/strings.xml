@@ -1,0 +1,11 @@
+<resources>
+    <string name="freshchat_file_provider_authority">com.example.freshchat_test.provider</string>
+
+<!--    <string name="freshchat_file_provider_authority">com.example.freshchat_test.social.share.fileprovider</string>-->
+
+    <string name="app_name">Your App Name here.</string>
+
+
+    <string name="facebook_app_id">478417049996594</string>
+
+</resources>
